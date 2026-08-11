@@ -59,3 +59,7 @@ Java 包名为 `cn.zhuatech.searchai`，数据库名为 `zhuatech_searchai`。AP
 | ![微信咨询二维码一](docs/images/zhuatech-wechat-consulting.png) | ![微信咨询二维码二](docs/images/zhuatech-wechat-consulting-2.png) |
 
 SEO：企业智能搜索、AI搜索、语义检索、RAG搜索、Java企业搜索源码、知华科技、上海如静知华信息科技有限公司。
+
+## 企业搜索质量
+
+新增 `POST /api/searchai/insights/search-quality`，结合零结果、点击、前三点击、查询改写、陈旧结果和权限泄露计算质量分，输出 `HEALTHY`、`IMPROVE` 或 `BLOCK`。

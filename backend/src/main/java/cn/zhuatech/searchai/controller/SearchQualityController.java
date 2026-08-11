@@ -1,0 +1,3 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 */
+package cn.zhuatech.searchai.controller;import cn.zhuatech.searchai.common.ApiResponse;import cn.zhuatech.searchai.service.SearchQualityService;import jakarta.validation.Valid;import org.springframework.web.bind.annotation.*;
+@RestController @RequestMapping("/api/searchai/insights/search-quality") public class SearchQualityController{private final SearchQualityService service;public SearchQualityController(SearchQualityService service){this.service=service;}@PostMapping ApiResponse<SearchQualityService.Result> evaluate(@Valid @RequestBody SearchQualityService.Request r){return ApiResponse.ok(service.evaluate(r));}}
