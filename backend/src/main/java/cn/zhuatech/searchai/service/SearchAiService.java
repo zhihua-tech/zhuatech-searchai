@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.searchai.service;
 import cn.zhuatech.searchai.common.BusinessException; import cn.zhuatech.searchai.dto.SearchAiDto.*; import cn.zhuatech.searchai.model.*; import cn.zhuatech.searchai.repository.*; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Transactional; import java.util.*;
 @Service @Transactional(readOnly=true) public class SearchAiService {

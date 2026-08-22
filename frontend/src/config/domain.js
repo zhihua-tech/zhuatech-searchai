@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 export const domain={
  code:'SEARCHAI',systemName:'知华企业智能搜索平台',englishName:'ENTERPRISE AI SEARCH',theme:{primary:'#365f83',dark:'#1e3448',accent:'#b88745',},
  workspace:'数字化中心 / 企业搜索运营组',fieldWorkspace:'知识检索组',period:'2026-08-04 · 实时运营',liveText:'运营数据于 10:36 更新',fieldContextLabel:'当前工作周期',fieldContext:'八月第一周',fieldUser:'许知',fieldRole:'知识运营专员',adminUser:'程越',adminRole:'搜索平台负责人',
