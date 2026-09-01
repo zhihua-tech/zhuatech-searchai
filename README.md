@@ -63,3 +63,7 @@ SEO：企业智能搜索、AI搜索、语义检索、RAG搜索、Java企业搜�
 ## 企业搜索质量
 
 新增 `POST /api/searchai/insights/search-quality`，结合零结果、点击、前三点击、查询改写、陈旧结果和权限泄露计算质量分，输出 `HEALTHY`、`IMPROVE` 或 `BLOCK`。
+
+## 企业级搜索索引发布
+
+新增 `POST /api/enterprise/searchai/search-index-publication`，覆盖授权、ACL、隐私、新鲜度、相关性、零结果率、监控和回滚，返回 `PUBLISH / CANARY / BLOCKED`。详见 [索引发布说明](docs/ENTERPRISE_INDEX_PUBLICATION.md)。

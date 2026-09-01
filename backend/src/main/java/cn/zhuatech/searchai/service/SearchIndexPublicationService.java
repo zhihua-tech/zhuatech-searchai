@@ -1,0 +1,8 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
+package cn.zhuatech.searchai.service;
+import jakarta.validation.constraints.*;import org.springframework.stereotype.Service;import java.util.*;
+@Service public class SearchIndexPublicationService{
+ public Assessment assess(Request r){List<String>b=new ArrayList<>(),a=new ArrayList<>();
+  if(!r.ownerAssigned())b.add("搜索索引责任人未指定");if(!r.sourceAuthorizationVerified())b.add("内容来源授权未验证");if(!r.aclSynchronized())b.add("源系统访问权限未同步");if(!r.piiScanPassed())b.add("个人信息扫描未通过");if(!r.freshnessPolicyPassed())b.add("内容新鲜度策略未通过");if(r.relevanceScore()<r.minRelevanceScore())b.add("相关性评测低于发布阈值");if(r.zeroResultRate()>r.maxZeroResultRate())b.add("零结果率超过发布阈值");if(!r.finalApprovalComplete())b.add("索引发布审批未完成");
+  if(!b.isEmpty()){a.add("阻断索引发布并修复权限、数据或质量缺口");return new Assessment(Decision.BLOCKED,b,a);}if(!r.monitoringReady()||!r.rollbackSnapshotReady()){if(!r.monitoringReady())a.add("配置质量、权限泄露和新鲜度监控");if(!r.rollbackSnapshotReady())a.add("创建可验证的生产索引回滚快照");return new Assessment(Decision.CANARY,b,a);}a.add("批准索引发布并保留语料、权限和评测版本");return new Assessment(Decision.PUBLISH,b,a);}
+ public record Request(@NotBlank String indexVersion,boolean ownerAssigned,boolean sourceAuthorizationVerified,boolean aclSynchronized,boolean piiScanPassed,boolean freshnessPolicyPassed,@DecimalMin("0")double relevanceScore,@DecimalMin("0")double minRelevanceScore,@DecimalMin("0")double zeroResultRate,@DecimalMin("0")double maxZeroResultRate,boolean monitoringReady,boolean rollbackSnapshotReady,boolean finalApprovalComplete){}public record Assessment(Decision decision,List<String>blockers,List<String>actions){}public enum Decision{PUBLISH,CANARY,BLOCKED}}
