@@ -11,9 +11,16 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-/** 对检索候选执行租户、ACL、分类、脱敏、引用和来源多样性控制。 */
+/**
+ * 对检索候选执行租户、ACL、分类、脱敏、引用和来源多样性控制。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class SearchResultGovernanceService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public GovernanceResult govern(GovernanceRequest request) {
         List<Candidate> eligible = new ArrayList<>();
         List<RejectedCandidate> rejected = new ArrayList<>();
@@ -51,26 +58,47 @@ public class SearchResultGovernanceService {
                 sourceDiversity, List.copyOf(actions));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private BigDecimal ratio(long numerator, int denominator) {
         if (denominator == 0) return BigDecimal.ZERO.setScale(4);
         return BigDecimal.valueOf(numerator).divide(BigDecimal.valueOf(denominator), 4, RoundingMode.HALF_UP);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record GovernanceRequest(@NotBlank String tenantId, @NotBlank String userId,
             @NotBlank String query, boolean restrictedAccessApproved,
             @DecimalMin("0") @DecimalMax("1") BigDecimal minRelevanceScore,
             @DecimalMin("0") @DecimalMax("1") BigDecimal minCitationCoverage,
             @Min(1) @Max(10) int minSourceDiversity, @Min(1) @Max(100) int maxResults,
             @NotEmpty List<@Valid Candidate> candidates) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Candidate(@NotBlank String documentId, @NotBlank String tenantId,
             @NotBlank String sourceSystem, @NotNull Classification classification,
             @DecimalMin("0") @DecimalMax("1") BigDecimal relevanceScore,
             boolean aclAllowed, boolean containsPersonalData, boolean piiMasked,
             boolean citationAvailable) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record RejectedCandidate(String documentId, List<String> reasons) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record GovernanceResult(Decision decision, List<Candidate> releasedResults,
             List<RejectedCandidate> rejectedResults, BigDecimal citationCoverage,
             int sourceDiversity, List<String> actions) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Classification { PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { RELEASE, REVIEW, BLOCKED }
 }
