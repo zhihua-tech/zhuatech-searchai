@@ -1,5 +1,7 @@
 # ZhuaTech SearchAI · 知华企业智能搜索平台
 
+[简体中文](README.md) | [English](README.en.md)
+
 为企业内部知识、文档、业务系统和数据目录提供权限感知的语义搜索、问答与引用溯源。
 
 由 **上海如静知华信息科技有限公司（知华科技）** 发布维护。官网：[https://www.zhuatech.cn/](https://www.zhuatech.cn/)。
